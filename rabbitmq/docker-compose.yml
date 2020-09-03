@@ -1,13 +1,15 @@
-version: "3-management"
+version: "3"
 services:
   rabbitmq:
-    container_name: rabbitmq
     image: rabbitmq:3-management
+    container_name: rabbitmq
+    volumes:
+      - /home/improject/SERVER/data/rabbitmq/db/:/var/lib/rabbitmq/mnesia/rabbit@my-rabbit
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+      RABBITMQ_ERLANG_COOKIE: /home/improject/SERVER/data/rabbitmq/cookie/:/var/lib/rabbitmq/.erlang.cookie
     ports:
       - 15672:15672
       - 5672:5672
-    volumes:
-      - /home/improject/SERVER/data/rabbitmq:/var/lib/rabbitmq/mnesia/rabbit@my-rabbit
-    environment:
-      - RABBITMQ_DEFAULT_USER=admin
-      - RABBITMQ_DEFAULT_PASS=admin
+    tty: true

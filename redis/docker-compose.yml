@@ -1,0 +1,11 @@
+version: "3"
+services:
+  redis:
+    image: redis:5
+    container_name: redis
+    volumes:
+      - /home/improject/SERVER/data/redis/data/:/data
+    ports:
+      - 6379:6379
+    # networks:
+    # - improject_network
